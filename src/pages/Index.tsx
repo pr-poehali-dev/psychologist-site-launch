@@ -1,26 +1,30 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Icon from "@/components/ui/icon";
+import { useState } from "react";
 
 const Index = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-purple-50 to-pink-50">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b border-gray-100 z-50">
+      <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-lg border-b border-white/20 z-50 shadow-lg shadow-purple-500/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <div className="font-inter font-semibold text-lg text-calming-gray">
-              Психолог Анна Петрова
+            <div className="font-inter font-bold text-xl bg-gradient-to-r from-modern-purple to-modern-pink bg-clip-text text-transparent">
+              Анна Петрова
             </div>
             <div className="hidden md:flex space-x-8">
-              <a href="#home" className="text-calming-gray hover:text-primary transition-colors">Главная</a>
-              <a href="#services" className="text-calming-gray hover:text-primary transition-colors">Услуги</a>
-              <a href="#about" className="text-calming-gray hover:text-primary transition-colors">Обо мне</a>
-              <a href="#reviews" className="text-calming-gray hover:text-primary transition-colors">Отзывы</a>
-              <a href="#articles" className="text-calming-gray hover:text-primary transition-colors">Статьи</a>
-              <a href="#contacts" className="text-calming-gray hover:text-primary transition-colors">Контакты</a>
+              {['Главная', 'Услуги', 'Обо мне', 'Отзывы', 'Статьи', 'Контакты'].map((item, index) => (
+                <a key={index} href={`#${item.toLowerCase()}`} className="text-modern-dark-light hover:text-modern-purple transition-all duration-300 font-medium relative group">
+                  {item}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-modern-purple to-modern-pink transition-all duration-300 group-hover:w-full"></span>
+                </a>
+              ))}
             </div>
-            <Button className="bg-primary hover:bg-primary/90 text-white">
+            <Button className="bg-gradient-to-r from-modern-purple to-modern-pink hover:shadow-lg hover:shadow-purple-500/25 text-white font-medium transition-all duration-300 hover:scale-105">
+              <Icon name="Calendar" size={16} className="mr-2" />
               Записаться
             </Button>
           </div>
@@ -28,35 +32,62 @@ const Index = () => {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="pt-24 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-calming-light to-white">
+      <section id="home" className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="animate-fade-in">
-              <h1 className="font-inter text-4xl lg:text-6xl font-bold text-calming-gray mb-6 leading-tight">
-                Путь к гармонии<br />
-                <span className="text-primary">начинается здесь</span>
+              <div className="inline-block px-4 py-2 rounded-full bg-white/50 backdrop-blur-sm border border-white/30 text-modern-purple font-medium mb-6">
+                ✨ Современная психотерапия
+              </div>
+              <h1 className="font-inter text-5xl lg:text-7xl font-black text-modern-dark mb-6 leading-tight">
+                Путь к <br />
+                <span className="bg-gradient-to-r from-modern-purple via-modern-pink to-modern-blue bg-clip-text text-transparent animate-glow">
+                  внутренней
+                </span><br />
+                гармонии
               </h1>
-              <p className="font-open-sans text-lg text-gray-600 mb-8 leading-relaxed">
-                Профессиональная психологическая помощь в комфортной атмосфере. 
-                Помогаю найти внутренние ресурсы и преодолеть трудности.
+              <p className="font-open-sans text-xl text-gray-600 mb-8 leading-relaxed">
+                Инновационные методы психотерапии в комфортной атмосфере. 
+                Помогаю найти баланс и раскрыть потенциал.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="bg-primary hover:bg-primary/90 text-white px-8">
-                  <Icon name="Calendar" size={20} className="mr-2" />
-                  Записаться на консультацию
+              <div className="flex flex-col sm:flex-row gap-6">
+                <Button size="lg" className="bg-gradient-to-r from-modern-purple to-modern-pink hover:shadow-xl hover:shadow-purple-500/25 text-white px-8 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105 animate-glow">
+                  <Icon name="Sparkles" size={20} className="mr-2" />
+                  Начать путь к себе
                 </Button>
-                <Button variant="outline" size="lg" className="border-primary text-primary hover:bg-primary/5">
-                  <Icon name="MessageCircle" size={20} className="mr-2" />
-                  Задать вопрос
+                <Button variant="outline" size="lg" className="border-2 border-modern-purple/30 text-modern-purple hover:bg-modern-purple/5 backdrop-blur-sm bg-white/50 px-8 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105">
+                  <Icon name="PlayCircle" size={20} className="mr-2" />
+                  Смотреть видео
                 </Button>
               </div>
+              
+              <div className="mt-12 grid grid-cols-3 gap-8">
+                {[
+                  { number: "500+", label: "Клиентов" },
+                  { number: "10+", label: "Лет опыта" },
+                  { number: "98%", label: "Результат" }
+                ].map((stat, index) => (
+                  <div key={index} className="text-center animate-slide-up" style={{animationDelay: `${index * 0.2}s`}}>
+                    <div className="text-3xl font-black bg-gradient-to-r from-modern-purple to-modern-pink bg-clip-text text-transparent">
+                      {stat.number}
+                    </div>
+                    <div className="text-gray-600 font-medium">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="animate-scale-in">
-              <img 
-                src="/img/fca5d408-2ba8-417a-b4b8-7e49dedc04ad.jpg"
-                alt="Психолог Анна Петрова"
-                className="w-full max-w-md mx-auto rounded-2xl shadow-lg"
-              />
+            <div className="animate-scale-in relative">
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-br from-modern-purple/20 to-modern-pink/20 rounded-3xl blur-xl transform rotate-6"></div>
+                <img 
+                  src="/img/fca5d408-2ba8-417a-b4b8-7e49dedc04ad.jpg"
+                  alt="Психолог Анна Петрова"
+                  className="relative w-full max-w-lg mx-auto rounded-3xl shadow-2xl shadow-purple-500/20 transform -rotate-2 hover:rotate-0 transition-transform duration-500"
+                />
+                <div className="absolute -top-6 -right-6 w-24 h-24 bg-gradient-to-br from-modern-pink to-modern-purple rounded-full flex items-center justify-center animate-float shadow-lg">
+                  <Icon name="Heart" size={32} className="text-white" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
